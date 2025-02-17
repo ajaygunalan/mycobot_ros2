@@ -141,7 +141,9 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
 **Steps:**
 
 1. **Launch the controllers, Gazebo, and MoveGroup with RViz**
-   - ```bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh```  
+      ```
+     bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh
+      ```  
 
 2. **Run the C++ Demo Node:** Open another terminal and run the **hello_moveit** node:
 
@@ -166,7 +168,9 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
 **Steps:**
 
 1. 1. **Launch the controllers, Gazebo, and MoveGroup with RViz**
-   - ```bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh```  
+   ```
+   bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh
+   ```  
 
 2. **Run the Planning Demo:** Open a new terminal and run the **plan_around_objects** node:
 
