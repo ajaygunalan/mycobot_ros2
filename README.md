@@ -192,6 +192,22 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
 
 **Goal:** Install and configure the MoveIt Task Constructor framework for more advanced task planning. This step sets up the environment for running Task Constructor demos (tutorials 7–12).
 
+
+MTC Core Concepts:
+- Task: A high-level plan for a robot, composed of smaller steps called stages.
+- Stage: A single step within a task, representing a specific action or calculation.
+- Planning Scene: A virtual model of the robot's environment used for motion planning.
+
+Stage Types
+- Generator Stage: Creates new possibilities without input from other stages.
+- Propagator Stage: Processes input from an adjacent stage and generates output for the next stage.
+- Connector Stage: Plans movements between two different arbitrary stages.
+
+Containers
+- Wrapper Container: Modifies or filters solutions of a contained stage.
+- Serial Container: Contains a sequence of stages that must be followed in order.
+- Parallel Container: Allows simultaneous or alternative execution of multiple stages.
+
 **Steps:**
 
 1. **Install MoveIt Task Constructor (if not already installed):** MTC is an add-on to MoveIt. If you haven’t installed it:
