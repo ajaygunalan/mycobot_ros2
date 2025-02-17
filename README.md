@@ -208,6 +208,15 @@ Containers
 - Serial Container: Contains a sequence of stages that must be followed in order.
 - Parallel Container: Allows simultaneous or alternative execution of multiple stages.
 
+Data Storage for MoveIt
+- Persistent Storage: **warehouse_ros_mongo **provides a way to store and retrieve data persistently for MoveIt, including the Task Constructor2.
+- Planning Scenes: MTC uses planning scenes, which can be saved and loaded using the warehouse_ros_mongo package3.
+- Robot States: The warehouse functionality allows saving and restoring robot states, which is useful for MTC when defining start and goal states for tasks3.
+
+Integration in ROS 2 Ecosystem
+- Launch File Configuration: The warehouse plugin (MongoDB in this case) is specified in the launch files of the MoveIt configuration, allowing MTC to access stored data3.
+- Database Connection: MTC can connect to the MongoDB database through the warehouse_ros_mongo interface to retrieve or store planning information
+
 **Steps:**
 
 1. **Install MoveIt Task Constructor (if not already installed):** MTC is an add-on to MoveIt. If you haven’t installed it:
