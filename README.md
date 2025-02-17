@@ -47,7 +47,7 @@ source ~/.bashrc
    ros2 launch mycobot_gazebo mycobot_280_arduino_bringup_ros2_control_gazebo.launch.py
    ``` 
 
-   This spawns the robot in Gazebo and loads the joint controllers (you should see the arm in an empty world) ([How to Simulate a Robotic Arm in Gazebo – ROS 2 Jazzy](https://automaticaddison.com/how-to-simulate-a-robotic-arm-in-gazebo-ros-2-jazzy/#:~:text=echo%20,y%3A%3D0.0)) ([How to Simulate a Robotic Arm in Gazebo – ROS 2 Jazzy](https://automaticaddison.com/how-to-simulate-a-robotic-arm-in-gazebo-ros-2-jazzy/#:~:text=Now%20let%E2%80%99s%20launch%20everything)).
+   This spawns the robot in Gazebo and loads the joint controllers (you should see the arm in an empty world).
 
 2. **Control the Gripper (Optional):** You can test the gripper controller using ROS 2 action commands. For example, to **close** the gripper: 
 
@@ -63,7 +63,7 @@ source ~/.bashrc
    "{command: {position: 0.0, max_effort: 5.0}}"
    ``` 
 
-   These commands send a position to the gripper (in this case, -0.7 for closed, 0.0 for open) ([How to Simulate a Robotic Arm in Gazebo – ROS 2 Jazzy](https://automaticaddison.com/how-to-simulate-a-robotic-arm-in-gazebo-ros-2-jazzy/#:~:text=If%20you%20want%20to%20close,gripper%2C%20you%20can%20do%20this)).
+   These commands send a position to the gripper (in this case, -0.7 for closed, 0.0 for open) .
 
 3. **Move the Arm (Optional):** You can command a joint trajectory to move the arm. For example, send the arm to a new joint configuration: 
 
@@ -74,9 +74,9 @@ source ~/.bashrc
    }"
    ``` 
 
-   This single command (formatted on multiple lines for readability) publishes a trajectory for the six joints ([How to Simulate a Robotic Arm in Gazebo – ROS 2 Jazzy](https://automaticaddison.com/how-to-simulate-a-robotic-arm-in-gazebo-ros-2-jazzy/#:~:text=Here%20is%20a%20command%20you,is%20all%20a%20single%20command)). The arm should move to the specified joint angles over 3 seconds. You can similarly publish a trajectory of all zeros to return the arm to its home position ([How to Simulate a Robotic Arm in Gazebo – ROS 2 Jazzy](https://automaticaddison.com/how-to-simulate-a-robotic-arm-in-gazebo-ros-2-jazzy/#:~:text=You%20can%20also%20move%20it,back%20home%20now)).
+   This single command (formatted on multiple lines for readability) publishes a trajectory for the six joints. The arm should move to the specified joint angles over 3 seconds. You can similarly publish a trajectory of all zeros to return the arm to its home position.
 
-**Key Points / Differences:** This demo uses **ROS 2 Control** to simulate the arm. Make sure the controllers (`arm_controller`, `gripper_action_controller`, etc.) are active (you can check with `ros2 control list_controllers` if needed) ([How to Simulate a Robotic Arm in Gazebo – ROS 2 Jazzy](https://automaticaddison.com/how-to-simulate-a-robotic-arm-in-gazebo-ros-2-jazzy/#:~:text=See%20the%20active%20controllers%3A)). In this step, we are **not** using MoveIt 2 yet – all motions are commanded directly via ROS 2 topics/actions.
+**Key Points / Differences:** This demo uses **ROS 2 Control** to simulate the arm. Make sure the controllers (`arm_controller`, `gripper_action_controller`, etc.) are active (you can check with `ros2 control list_controllers` if needed). In this step, we are **not** using MoveIt 2 yet – all motions are commanded directly via ROS 2 topics/actions.
 
 ----
 
@@ -92,7 +92,7 @@ source ~/.bashrc
    ros2 launch mycobot_gazebo mycobot_280_arduino_bringup_ros2_control_gazebo.launch.py use_rviz:=false
    ``` 
 
-   (We disable RViz here because MoveIt will launch its own RViz session) ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=ros2%20launch%20mycobot_gazebo%20mycobot_280_arduino_bringup_ros2_control_gazebo,py)).
+   (We disable RViz here because MoveIt will launch its own RViz session).
 
 2. **Launch MoveIt and RViz:** Open a **new terminal** (keep Gazebo running) and launch the MoveIt `move_group` node with RViz: 
 
@@ -100,15 +100,15 @@ source ~/.bashrc
    ros2 launch mycobot_moveit_config move_group.launch.py
    ``` 
 
-   This starts the MoveIt motion planning server and opens RViz with the MoveIt configuration ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=Launch%20MoveIt%20and%20RViz)). You should see the robot in RViz along with the MoveIt Motion Planning plugin.
+   This starts the MoveIt motion planning server and opens RViz with the MoveIt configuration. You should see the robot in RViz along with the MoveIt Motion Planning plugin.
 
 3. **Plan a Motion in RViz:** In RViz, use the "Motion Planning" panel to plan and execute a trajectory:
    - Select the "Interactive Marker" and move it to set a target pose for the robot’s end effector.
    - Click **Plan** and then **Execute**. The arm in Gazebo should follow the planned trajectory. 
 
-   MoveIt is now controlling the arm via the ROS 2 controllers. By default, the **Pilz Industrial Planner** is set as the planning pipeline (see Tutorial 3 for how to switch planners) ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=.planning_pipelines%28%20pipelines%3D%5B,publish_robot_description%3DFalse%2C%20publish_robot_description_semantic%3DTrue%2C%20publish_planning_scene%3DTrue%2C)) ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=This%20launch%20file%20launches%20MoveIt,and%20RViz)).
+   MoveIt is now controlling the arm via the ROS 2 controllers. By default, the **Pilz Industrial Planner** is set as the planning pipeline (see Tutorial 3 for how to switch planners).
 
-**Key Points:** Ensure the **Gazebo simulation is running** before launching MoveIt; otherwise, the MoveIt RViz might not find the robot’s state topics and the planners could time out. The MoveIt launch above uses simulation time (`use_sim_time`) so everything stays synchronized with Gazebo ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=moveit_config.to_dict%28%29%2C%20,%5D%2C)). At this stage, MoveIt’s planning pipeline has Pilz, STOMP, and OMPL available (configured in the launch). You can now use MoveIt’s interactive tools to plan collision-free paths.
+**Key Points:** Ensure the **Gazebo simulation is running** before launching MoveIt; otherwise, the MoveIt RViz might not find the robot’s state topics and the planners could time out. The MoveIt launch above uses simulation time (`use_sim_time`) so everything stays synchronized with Gazebo. At this stage, MoveIt’s planning pipeline has Pilz, STOMP, and OMPL available (configured in the launch). You can now use MoveIt’s interactive tools to plan collision-free paths.
 
 ----
 
@@ -118,19 +118,19 @@ source ~/.bashrc
 
 **Steps/Notes:**
 
-- **Pilz Industrial Motion Planner:** A deterministic planner ideal for simple, constrained motions (linear, circular, or PTP moves) where speed and predictability are key ([Difference between Pilz, STOMP, and OMPL Planners](https://automaticaddison.com/difference-between-pilz-stomp-and-ompl-planners/#:~:text=When%20to%20use%20Pilz)) ([Difference between Pilz, STOMP, and OMPL Planners](https://automaticaddison.com/difference-between-pilz-stomp-and-ompl-planners/#:~:text=Use%20Pilz%20when%20your%20cooking,stirring%20motion%20in%20a%20bowl)). *When to use:* repetitive or industrial tasks like a straight-line approach or a fixed stirring motion – Pilz ensures consistent and fast execution.
+- **Pilz Industrial Motion Planner:** A deterministic planner ideal for simple, constrained motions (linear, circular, or PTP moves) where speed and predictability are key. *When to use:* repetitive or industrial tasks like a straight-line approach or a fixed stirring motion – Pilz ensures consistent and fast execution.
 
-- **STOMP (Stochastic Trajectory Optimization for Motion Planning):** An optimization-based planner that improves trajectory smoothness and can escape local minima due to its stochastic nature ([Difference between Pilz, STOMP, and OMPL Planners](https://automaticaddison.com/difference-between-pilz-stomp-and-ompl-planners/#:~:text=When%20programming%20a%20robotic%20arm,each%20one%20over%20the%20others)) ([Difference between Pilz, STOMP, and OMPL Planners](https://automaticaddison.com/difference-between-pilz-stomp-and-ompl-planners/#:~:text=When%20to%20use%20STOMP)). *When to use:* if you need a smooth path or have path constraints (e.g., maintain a certain orientation) – STOMP trades extra computation time for a potentially higher-quality path.
+- **STOMP (Stochastic Trajectory Optimization for Motion Planning):** An optimization-based planner that improves trajectory smoothness and can escape local minima due to its stochastic nature. *When to use:* if you need a smooth path or have path constraints (e.g., maintain a certain orientation) – STOMP trades extra computation time for a potentially higher-quality path.
 
 - **OMPL (Open Motion Planning Library):** A set of sampling-based planners (default in MoveIt) good for complex, high-dimensional planning problems. *When to use:* for general-purpose planning in cluttered environments or when no special constraints require Pilz or STOMP – OMPL offers flexibility and a variety of planning algorithms.
 
-- **Selecting a Planner:** In the MoveIt RViz Motion Planning panel, you can choose the planner. By default, the MoveIt config uses Pilz as the pipeline ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=.planning_pipelines%28%20pipelines%3D%5B,publish_robot_description%3DFalse%2C%20publish_robot_description_semantic%3DTrue%2C%20publish_planning_scene%3DTrue%2C)). To try OMPL or STOMP, open the **Planning** tab in RViz and look for the planner/pipeline selection drop-down (it may list OMPL, Pilz, STOMP if configured). Select the desired planner and click **Plan** again to see how the trajectory or planning time changes. 
+- **Selecting a Planner:** In the MoveIt RViz Motion Planning panel, you can choose the planner. By default, the MoveIt config uses Pilz as the pipeline. To try OMPL or STOMP, open the **Planning** tab in RViz and look for the planner/pipeline selection drop-down (it may list OMPL, Pilz, STOMP if configured). Select the desired planner and click **Plan** again to see how the trajectory or planning time changes. 
 
 No additional launch commands are needed beyond what was done in Tutorial 2. This step is about exploring the planners:
   - For example, try planning a move with **Pilz** (notice it may choose a simple linear path) versus **OMPL** (which might take a slightly different path or longer planning time if obstacles are present).
   - If STOMP is installed and configured, you can set it as the planner and plan; STOMP may produce a smoother path if one exists, at the cost of more planning time.
 
-**Key Points:** Pilz is **fast and deterministic** (great for known simple motions) ([Difference between Pilz, STOMP, and OMPL Planners](https://automaticaddison.com/difference-between-pilz-stomp-and-ompl-planners/#:~:text=,don%E2%80%99t%20require%20complex%20trajectory%20planning)), STOMP focuses on **trajectory optimization**, and OMPL is a **general framework** that includes many planners (RRT, PRM, etc.). In practice, you choose based on your task needs. MoveIt 2 allows configuring multiple pipelines; in our setup, all three are available, and you can switch as needed without restarting Gazebo ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=.planning_pipelines%28%20pipelines%3D%5B,publish_robot_description%3DFalse%2C%20publish_robot_description_semantic%3DTrue%2C%20publish_planning_scene%3DTrue%2C)). 
+**Key Points:** Pilz is **fast and deterministic** (great for known simple motions), STOMP focuses on **trajectory optimization**, and OMPL is a **general framework** that includes many planners (RRT, PRM, etc.). In practice, you choose based on your task needs. MoveIt 2 allows configuring multiple pipelines; in our setup, all three are available, and you can switch as needed without restarting Gazebo. 
 
 ----
 
@@ -152,13 +152,13 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
    ros2 run mycobot_moveit_demos hello_moveit
    ``` 
 
-   This will execute the C++ program which plans a motion for the arm and then executes it ([How to Create Your First C++ MoveIt 2 Project – ROS 2 Jazzy](https://automaticaddison.com/how-to-create-your-first-c-moveit-2-project-ros-2-jazzy/#:~:text=match%20at%20L251%20ros2%20run,mycobot_moveit_demos%20hello_moveit)). The program is configured to move the robot’s end-effector (gripper) to a predefined target pose in front of the robot, using the MoveIt `MoveGroupInterface` to plan and execute the trajectory.
+   This will execute the C++ program which plans a motion for the arm and then executes it. The program is configured to move the robot’s end-effector (gripper) to a predefined target pose in front of the robot, using the MoveIt `MoveGroupInterface` to plan and execute the trajectory.
 
 3. **Observe the Motion:** In RViz and Gazebo, you should see the arm move from its starting "home" position to the target pose (and possibly back, depending on the code logic). The terminal running `hello_moveit` will print out status information about planning and execution. 
 
-   *Note:* The node will wait up to 10 seconds for MoveIt / `move_group` to be available. If you run it too early (before launching MoveIt), it will error out after waiting ([How to Create Your First C++ MoveIt 2 Project – ROS 2 Jazzy](https://automaticaddison.com/how-to-create-your-first-c-moveit-2-project-ros-2-jazzy/#:~:text=match%20at%20L268%20ros2%20run,tf2_ros%20tf2_echo%20base_link%20gripper_base)). Ensure MoveIt is running (`/move_group` node is active) before executing the `ros2 run` command.
+   *Note:* The node will wait up to 10 seconds for MoveIt / `move_group` to be available. If you run it too early (before launching MoveIt), it will error out after waiting. Ensure MoveIt is running (`/move_group` node is active) before executing the `ros2 run` command.
 
-**Key Points:** This demo uses the MoveIt C++ API to request a motion plan and execute it on the simulated robot. It demonstrates a simple pick-and-place style "go to pose" command in code. We added the `mycobot_moveit_demos` package for these custom nodes (which includes `hello_moveit` as created in the tutorial) ([How to Create Your First C++ MoveIt 2 Project – ROS 2 Jazzy](https://automaticaddison.com/how-to-create-your-first-c-moveit-2-project-ros-2-jazzy/#:~:text=ros2%20pkg%20create%20,name%20hello_moveit%20%5C%20mycobot_moveit_demos)). After running, you can also verify the end effector’s final pose via a tf echo or in RViz (the tutorial suggests `ros2 run tf2_ros tf2_echo base_link gripper_base` to see the transform) ([How to Create Your First C++ MoveIt 2 Project – ROS 2 Jazzy](https://automaticaddison.com/how-to-create-your-first-c-moveit-2-project-ros-2-jazzy/#:~:text=ros2%20run%20tf2_ros%20tf2_echo%20base_link,gripper_base)).
+**Key Points:** This demo uses the MoveIt C++ API to request a motion plan and execute it on the simulated robot. It demonstrates a simple pick-and-place style "go to pose" command in code. We added the `mycobot_moveit_demos` package for these custom nodes (which includes `hello_moveit` as created in the tutorial). After running, you can also verify the end effector’s final pose via a tf echo or in RViz (the tutorial suggests `ros2 run tf2_ros tf2_echo base_link gripper_base` to see the transform).
 
 ----
 
@@ -178,13 +178,13 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
    ros2 run mycobot_moveit_demos plan_around_objects
    ``` 
 
-   This program will add a collision object (e.g., a box or cylinder) into MoveIt’s planning scene, then plan a motion for the arm to reach a target on the other side of the object ([Add and Plan Around Objects Using MoveIt 2 – ROS 2 Jazzy](https://automaticaddison.com/add-and-plan-around-objects-using-moveit-2-ros-2-jazzy/#:~:text=ros2%20run%20mycobot_moveit_demos%20plan_around_objects)). The MoveIt Visual Tools library is used to visualize the scene and trajectory in RViz (you may see markers or messages in RViz confirming the object addition).
+   This program will add a collision object (e.g., a box or cylinder) into MoveIt’s planning scene, then plan a motion for the arm to reach a target on the other side of the object. The MoveIt Visual Tools library is used to visualize the scene and trajectory in RViz (you may see markers or messages in RViz confirming the object addition).
 
 3. **Observe in RViz:** In RViz, you should see the obstacle appear (usually as a colored shape) and the planned trajectory drawn, avoiding the object. The program likely also triggers execution; the arm in Gazebo should move, taking a path around the virtual object. 
 
    If the program doesn’t auto-execute, you can manually execute the trajectory: look for a prompt or use the RViz MotionPlanning panel to execute the last planned path. 
 
-**Key Points:** This demo introduces the **Planning Scene Interface**. The code programmatically added a collision object into the environment and then planned a path to a goal while avoiding it ([Add and Plan Around Objects Using MoveIt 2 – ROS 2 Jazzy](https://automaticaddison.com/add-and-plan-around-objects-using-moveit-2-ros-2-jazzy/#:~:text=In%20this%20tutorial%2C%20we%20will,movements%20while%20avoiding%20these%20obstacles)) ([Add and Plan Around Objects Using MoveIt 2 – ROS 2 Jazzy](https://automaticaddison.com/add-and-plan-around-objects-using-moveit-2-ros-2-jazzy/#:~:text=,Build%20the%20Package)). In practice, you can use this method to make the robot avoid known obstacles. The `moveit_visual_tools` dependency was added to publish helpful visualizations in RViz ([Add and Plan Around Objects Using MoveIt 2 – ROS 2 Jazzy](https://automaticaddison.com/add-and-plan-around-objects-using-moveit-2-ros-2-jazzy/#:~:text=cd%20)) ([Add and Plan Around Objects Using MoveIt 2 – ROS 2 Jazzy](https://automaticaddison.com/add-and-plan-around-objects-using-moveit-2-ros-2-jazzy/#:~:text=Add%20this%3A)). After running, you might see the arm take a detour around the object instead of a straight line, confirming the obstacle avoidance.
+**Key Points:** This demo introduces the **Planning Scene Interface**. The code programmatically added a collision object into the environment and then planned a path to a goal while avoiding it. In practice, you can use this method to make the robot avoid known obstacles. The `moveit_visual_tools` dependency was added to publish helpful visualizations in RViz. After running, you might see the arm take a detour around the object instead of a straight line, confirming the obstacle avoidance.
 
 ----
 
@@ -199,7 +199,7 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
      ```bash
      sudo apt-get update && sudo apt-get install -y mongodb-org
      ``` 
-   - Install MoveIt Task Constructor packages. For ROS 2 Jazzy (Rolling), you may build from source. (In the tutorial, a specific commit was used ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=cd%20)).) If binary packages are available, you can try:  
+   - Install MoveIt Task Constructor packages. For ROS 2 Jazzy (Rolling), you may build from source. (In the tutorial, a specific commit was used. If binary packages are available, you can try:  
      ```bash
      sudo apt-get install ros-$ROS_DISTRO-moveit-task-constructor
      ``` 
@@ -210,9 +210,9 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
      colcon build --event-handlers console_cohesion+ 
      source ~/.bashrc
      ```
-     Ensure no build errors. (If building from source, refer to tutorial instructions for patching any issues ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=cd%20)) ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=moveit%3A%3Acore%3A%3AJumpThreshold%28props.get%3Cdouble%3E%28)).)
+     Ensure no build errors. 
 
-2. **Create the MTC Demo Package:** The repository already includes `mycobot_mtc_demos`, which contains sample Task Constructor demos. Ensure it’s built (it was added in the previous step). This package is configured to use MTC and has its own RViz config file (`mtc_demos.rviz`) for visualizing task pipelines ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=sleep%2015%20ros2%20launch%20mycobot_moveit_config,rviz_config_package%3A%3Dmycobot_mtc_demos)) ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=Now%20add%20an%20alias%20called,mtc_demos%20to%20your%20bashrc%20file)).
+2. **Create the MTC Demo Package:** The repository already includes `mycobot_mtc_demos`, which contains sample Task Constructor demos. Ensure it’s built (it was added in the previous step). This package is configured to use MTC and has its own RViz config file (`mtc_demos.rviz`) for visualizing task pipelines.
 
 3. **Launch Gazebo and MoveIt for MTC:** We will use a slightly different launch to include the camera and a world file, as later demos involve perception. In a terminal, launch Gazebo with the **perception world** and the depth camera:
 
@@ -221,7 +221,7 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
        world_file:=pick_and_place_demo.world use_camera:=true use_rviz:=false use_robot_state_pub:=true
    ``` 
 
-   This uses `pick_and_place_demo.world` (which contains a table and objects for the final demo) and activates a simulated RealSense depth camera on the robot ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=echo%20,y%3A%3D0.0)) ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=ros2%20launch%20mycobot_gazebo%20mycobot.gazebo.launch.py%20,x%3A%3D0.0)). Wait for Gazebo to fully load the robot and environment.
+   This uses `pick_and_place_demo.world` (which contains a table and objects for the final demo) and activates a simulated RealSense depth camera on the robot. Wait for Gazebo to fully load the robot and environment.
 
 4. **Launch MoveIt with MTC Configuration:** In a new terminal, launch MoveIt’s `move_group` with the Task Constructor RViz configuration:
 
@@ -229,11 +229,11 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
    ros2 launch mycobot_moveit_config move_group.launch.py rviz_config_file:=mtc_demos.rviz rviz_config_package:=mycobot_mtc_demos
    ``` 
 
-   This opens RViz with a panel called **“Motion Planning Tasks”** pre-loaded (the MTC RViz plugin) ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=z%3A%3D0.05%20,0)). MoveIt is running as before, and RViz is now ready to visualize Task Constructor tasks and their stages.
+   This opens RViz with a panel called **“Motion Planning Tasks”** pre-loaded (the MTC RViz plugin). MoveIt is running as before, and RViz is now ready to visualize Task Constructor tasks and their stages.
 
-   > **Note:** The provided RViz config will automatically shut down everything when you close RViz (it sets RViz to cause a shutdown on exit) ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=,d%22%2C%20rviz_config_file%5D%2C%20output%3D%22screen%22%2C%20parameters%3D%5B%20moveit_config.robot_description)) ([How to Configure MoveIt 2 for a Simulated Robot Arm](https://automaticaddison.com/how-to-configure-moveit-2-for-a-simulated-robot-arm/#:~:text=exit_event_handler%20%3D%20RegisterEventHandler,reason%3D%27rviz%20exited%27%29%29%2C%20%29%2C)). Keep RViz open while running the demos.
+   > **Note:** The provided RViz config will automatically shut down everything when you close RViz (it sets RViz to cause a shutdown on exit). Keep RViz open while running the demos.
 
-5. **(Optional) Use Helper Script:** The tutorial provided a quick-launch script `mycobot_280_mtc_demos.sh` and suggested adding an alias `mtc_demos` for convenience ([How to Set Up the MoveIt 2 Task Constructor – ROS 2 Jazzy](https://automaticaddison.com/how-to-set-up-the-moveit-2-task-constructor-ros-2-jazzy/#:~:text=Now%20add%20an%20alias%20called,mtc_demos%20to%20your%20bashrc%20file)). If you set that up, you can launch the above two steps with one command:
+5. **(Optional) Use Helper Script:** The tutorial provided a quick-launch script `mycobot_280_mtc_demos.sh` and suggested adding an alias `mtc_demos` for convenience. If you set that up, you can launch the above two steps with one command:
    ```bash
    mtc_demos
    ``` 
