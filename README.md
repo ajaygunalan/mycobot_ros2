@@ -141,7 +141,7 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
 **Steps:**
 
 1. **Launch the controllers, Gazebo, and MoveGroup with RViz**
-   - `bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh`  
+   - ```bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh```  
 
 2. **Run the C++ Demo Node:** Open another terminal and run the **hello_moveit** node:
 
@@ -165,9 +165,8 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
 
 **Steps:**
 
-1. **Launch Simulation and MoveIt:** As before, ensure Gazebo and MoveIt are running (see tutorial 4 steps). For a fresh start:
-   - Terminal 1: `ros2 launch mycobot_gazebo mycobot_280_arduino_bringup_ros2_control_gazebo.launch.py`  
-   - Terminal 2: `ros2 launch mycobot_moveit_config move_group.launch.py`
+1. 1. **Launch the controllers, Gazebo, and MoveGroup with RViz**
+   - ```bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh```  
 
 2. **Run the Planning Demo:** Open a new terminal and run the **plan_around_objects** node:
 
