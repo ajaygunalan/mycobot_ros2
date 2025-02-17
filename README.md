@@ -140,11 +140,8 @@ No additional launch commands are needed beyond what was done in Tutorial 2. Thi
 
 **Steps:**
 
-1. **Ensure Simulation and MoveIt are Running:** If you closed the previous sessions, relaunch Gazebo and MoveIt:
-   - Terminal 1: `ros2 launch mycobot_gazebo mycobot_280_arduino_bringup_ros2_control_gazebo.launch.py`  
-   - Terminal 2: `ros2 launch mycobot_moveit_config move_group.launch.py`
-
-   > *Tip:* If you still have them running from tutorial 2, you can reuse those.
+1. **Launch the controllers, Gazebo, and MoveGroup with RViz**
+   - `bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo_and_moveit.sh`  
 
 2. **Run the C++ Demo Node:** Open another terminal and run the **hello_moveit** node:
 
