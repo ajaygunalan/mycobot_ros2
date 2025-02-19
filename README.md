@@ -7,15 +7,14 @@
 
 ## Quick Start
 
-check the dependencies by:
+
+clone this repo inside the `src` of your `ros2_ws`, then go to the root of your workspace and check the dependencies by:
 
 ```
 rosdep install -i --from-path src --rosdistro jazzy -y
 ```
 
-```
-source /opt/ros/jazzy/setup.bash
-```
+If successful, then do: 
 
 ```
 colcon build
@@ -36,3 +35,4 @@ bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo.sh
 
 ```
 ros2 run mycobot_system_tests  arm_gripper_loop_controller
+```
