@@ -8,7 +8,7 @@
 ## Quick Start
 
 
-clone this repo inside the `src` of your `ros2_ws`, then go to the root of your workspace and check the dependencies by:
+Clone this repo inside the `src` of your `ros2_ws`, then go to the root of your workspace and check the dependencies by:
 
 ```
 rosdep install -i --from-path src --rosdistro jazzy -y
