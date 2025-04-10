@@ -45,3 +45,30 @@ bash ~/ros2_ws/src/mycobot_ros2/mycobot_bringup/scripts/mycobot_280_gazebo.sh
 ```
 ros2 run mycobot_system_tests  arm_gripper_loop_controller
 ```
+
+
+These are the `nodes` and `controllers` running:
+
+```
+ajay@asusROG:~/ros2_ws$ ros2 node list
+/arm_controller
+/arm_gripper_loop_controller
+/controller_manager
+/gripper_action_controller
+/gz_ros_control
+/joint_state_broadcaster
+/joint_state_publisher
+/robot_state_publisher
+/ros_gz_bridge
+/ros_gz_image
+/rviz
+/transform_listener_impl_63fb3daba040
+```  
+
+```
+ajay@asusROG:~/ros2_ws$ ros2 control list_controllers
+gripper_action_controller position_controllers/GripperActionController           active
+arm_controller            joint_trajectory_controller/JointTrajectoryController  active
+joint_state_broadcaster   joint_state_broadcaster/JointStateBroadcaster          active
+
+```
