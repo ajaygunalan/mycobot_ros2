@@ -2,13 +2,23 @@
 ![OS](https://img.shields.io/ubuntu/v/ubuntu-wallpapers/noble)
 ![ROS_2](https://img.shields.io/ros/v/jazzy/rclcpp)
 
+Do this in every terminal
+```
+source /opt/ros/jazzy/setup.bash
+```
 
+```
+source install/setup.bash
+
+```
 
 
 ## Quick Start
 
 
 Clone this repo inside the `src` of your `ros2_ws`, then go to the root of your workspace and check the dependencies by:
+
+
 
 ```
 rosdep install -i --from-path src --rosdistro jazzy -y
